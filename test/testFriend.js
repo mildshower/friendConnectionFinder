@@ -27,15 +27,24 @@ describe('getConnection()', function() {
     K: ['A']};
 
   it('should give false if no connection is there', function() {
-    const expectedConn = false;
-    const actualConn = friends.getConnection([], friendList, 'A', 'G')['connFlag'];
-    assert.strictEqual(actualConn, expectedConn);
+    const expectedValue = {connFlag: false, path: []};
+    const {connFlag, path} = friends.getConnection([], friendList, 'A', 'G');
+    const actualValue = {connFlag, path};
+    assert.deepStrictEqual(actualValue, expectedValue);
   });
 
-  it('should give true if connection is there', function() {
-    const expectedConn = true;
-    const actualConn = friends.getConnection([], friendList, 'A', 'E')['connFlag'];
-    assert.strictEqual(actualConn, expectedConn);
+  it('should give only two given names if they are direct friend(to test terminate condition)', function() {
+    const expectedValue = {connFlag: true, path: ['E', 'F']};
+    const {connFlag, path} = friends.getConnection([], friendList, 'E', 'F');
+    const actualValue = {connFlag, path};
+    assert.deepStrictEqual(actualValue, expectedValue);
+  });
+
+  it('should give proper path when connection is there', function() {
+    const expectedValue = {connFlag: true, path: ['A','H','F','E']};
+    const {connFlag, path} = friends.getConnection([], friendList, 'A', 'E');
+    const actualValue = {connFlag, path};
+    assert.deepStrictEqual(actualValue, expectedValue);
   });
 });
 
