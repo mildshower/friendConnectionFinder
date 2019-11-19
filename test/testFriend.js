@@ -1,6 +1,18 @@
 const friends = require('../src/friends');
 const assert = require('assert');
 
+describe('isUnconsidered()', function() {
+  it('Should return function that should give true if the value is not in the given list', function() {
+    const actualValue = friends.isUnconsidered([1,2,3])(4);
+    assert.ok(actualValue);
+  });
+
+  it('Should return function that should give false if the value is in the given list', function() {
+    const actualValue = friends.isUnconsidered([1,2,3])(2);
+    assert.ok(!actualValue);
+  });
+});
+
 describe('getConnection()', function() {
   const friendList = { A: ['K', 'H', 'D', 'F', 'J'],
     B: ['D'],

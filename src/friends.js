@@ -26,4 +26,5 @@ const getConnection = function(searchedFriend, friendList, personToLookAt, targe
   return {updatedSearched: searchedFriendCopy, connFlag: false, path: []};
 };
 
+exports.isUnconsidered = isUnconsidered;
 exports.getConnection = getConnection;
