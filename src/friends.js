@@ -15,24 +15,26 @@ const isConnected = function(searchedFriend, friendList, personToLookAt, target)
   };
 
   if(friendList[personToLookAt].includes(target)){
-    return {updatedSearched: searchedFriend.concat(personToLookAt), connFlag: true, path: [target]};
+    return {updatedSearched: searchedFriend.concat(personToLookAt), connFlag: true, path: [personToLookAt,target]};
   }
 
   let searchedFriendCopy = searchedFriend.slice();
   searchedFriendCopy.push(personToLookAt);
   let connection = false;
   const friendsOfPerson = friendList[personToLookAt];
-  let pathHead = [];
+  let updatedPath;
 
   for (let index = 0; index < friendsOfPerson.length && !connection; index ++) {
     const {updatedSearched, connFlag, path} = isConnected(searchedFriendCopy, friendList, friendsOfPerson[index], target);
-    if(connFlag) {
-      pathHead = pathHead.concat(friendsOfPerson[index]).concat(path);
-    }
+    updatedPath = path;
     connection = connection || connFlag;
     searchedFriendCopy = updatedSearched;
   }
 
+  let pathHead = [];
+    if(connection) {
+      pathHead = pathHead.concat(personToLookAt).concat(updatedPath);
+    }
   return {updatedSearched: searchedFriendCopy, connFlag: connection, path: pathHead};
 };
 
