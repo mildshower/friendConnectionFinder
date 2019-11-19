@@ -5,8 +5,8 @@ const devideInPairs = function(str) {
 };
 
 const addToFriendList = function(friendList, friendPair) {
-  const friend1 = friendPair[0];
-  const friend2 = friendPair[1];
+  const friend1 = friendPair[0].trim();
+  const friend2 = friendPair[1].trim();
   friendList[friend1] = friendList[friend1] || [];
   friendList[friend1].push(friend2);
   friendList[friend2] = friendList[friend2] || [];
@@ -29,7 +29,7 @@ const getPrintableStr = function(connection, person1, person2) {
 };
 
 const getFileLines = function(path) {
-  return fs.readFileSync(path, 'utf8').split('\n');
+  return fs.readFileSync(path, 'utf8').split('\n').slice(0, -1);
 };
 
 exports.addToFriendList = addToFriendList;

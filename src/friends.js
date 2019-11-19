@@ -15,8 +15,8 @@ const getConnection = function(searchedFriend, friendList, personToLookAt, targe
   let searchedFriendCopy = searchedFriend.slice();
   searchedFriendCopy.push(personToLookAt);
 
-  for (let index = 0; index < unconsideredList.length; index ++) {
-    const {updatedSearched, connFlag, path} = getConnection(searchedFriendCopy, friendList, unconsideredList[index], target);
+  for (let person of unconsideredList) {
+    const {updatedSearched, connFlag, path} = getConnection(searchedFriendCopy, friendList, person, target);
     searchedFriendCopy = updatedSearched;
     if(connFlag) {
       return {updatedSearched: searchedFriendCopy, connFlag: true, path: [personToLookAt].concat(path)};

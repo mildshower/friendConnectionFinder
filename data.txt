@@ -1,5 +1,5 @@
-Anuja,Rajat
+Anuja, Rajat
 Anuja,Priyanshu
-Priyanshu,Trinangkur
+Priyanshu,   Trinangkur
 Trinangkur,Barni
 John, Jaani

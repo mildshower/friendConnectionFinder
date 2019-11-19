@@ -8,7 +8,7 @@ const findConnection = function() {
   const fileLines = utils.getFileLines(path);
   const friendList = utils.getFriendList(fileLines);
   const connection = friends.getConnection([], friendList, person1, person2);
-  const message = utils.getPrintableStr(connection, 'B', 'E');
+  const message = utils.getPrintableStr(connection, person1, person2);
   console.log(message)
 };
 
