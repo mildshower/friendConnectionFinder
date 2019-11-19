@@ -1,21 +1,6 @@
 const friends = require('../src/friends');
 const assert = require('assert');
 
-describe('generateFriendList()', function() {
-  it('Should give hardcoded friend data', function() {
-    const expectedValue = { A: ['D', 'F'],
-      B: ['D'],
-      C: ['E'],
-      D: ['A', 'B'],
-      E: ['C', 'F'],
-      F: ['A', 'E'],
-      G: ['H'],
-      H: ['G']};
-    const actualValue = friends.generateFriendList();
-    assert.deepStrictEqual(actualValue, expectedValue);
-  });
-});
-
 describe('getConnection()', function() {
   const friendList = { A: ['K', 'H', 'D', 'F', 'J'],
     B: ['D'],

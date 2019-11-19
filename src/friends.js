@@ -1,42 +1,29 @@
-const generateFriendList = function() {
-  return { A: ['D', 'F'],
-    B: ['D'],
-    C: ['E'],
-    D: ['A', 'B'],
-    E: ['C', 'F'],
-    F: ['A', 'E'],
-    G: ['H'],
-    H: ['G']};
+const isUnconsidered = function(consideredList) {
+  return function(person) {
+    return !consideredList.includes(person);
+  };
 };
 
 const getConnection = function(searchedFriend, friendList, personToLookAt, target) {
-  if(searchedFriend.includes(personToLookAt)) {
-    return {updatedSearched: searchedFriend, connFlag: false};
-  };
+  const friendsOfPerson = friendList[personToLookAt];
 
-  if(friendList[personToLookAt].includes(target)){
+  if(friendsOfPerson.includes(target)){
     return {updatedSearched: searchedFriend.concat(personToLookAt), connFlag: true, path: [personToLookAt,target]};
   }
 
+  const unconsideredList = friendsOfPerson.filter(isUnconsidered(searchedFriend));
   let searchedFriendCopy = searchedFriend.slice();
   searchedFriendCopy.push(personToLookAt);
-  let connection = false;
-  const friendsOfPerson = friendList[personToLookAt];
-  let updatedPath;
 
-  for (let index = 0; index < friendsOfPerson.length && !connection; index ++) {
-    const {updatedSearched, connFlag, path} = getConnection(searchedFriendCopy, friendList, friendsOfPerson[index], target);
-    updatedPath = path;
-    connection = connection || connFlag;
+  for (let index = 0; index < unconsideredList.length; index ++) {
+    const {updatedSearched, connFlag, path} = getConnection(searchedFriendCopy, friendList, unconsideredList[index], target);
     searchedFriendCopy = updatedSearched;
+    if(connFlag) {
+      return {updatedSearched: searchedFriendCopy, connFlag: true, path: [personToLookAt].concat(path)};
+    }
   }
 
-  let pathHead = [];
-    if(connection) {
-      pathHead = pathHead.concat(personToLookAt).concat(updatedPath);
-    }
-  return {updatedSearched: searchedFriendCopy, connFlag: connection, path: pathHead};
+  return {updatedSearched: searchedFriendCopy, connFlag: false, path: []};
 };
 
-exports.generateFriendList = generateFriendList;
 exports.getConnection = getConnection;

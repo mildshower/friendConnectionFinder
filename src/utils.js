@@ -1,11 +1,38 @@
-const showConnection = function(connection, person1, person2) {
+const fs = require('fs');
+
+const devideInPairs = function(str) {
+  return str.split(',');
+};
+
+const addToFriendList = function(friendList, friendPair) {
+  const friend1 = friendPair[0];
+  const friend2 = friendPair[1];
+  friendList[friend1] = friendList[friend1] || [];
+  friendList[friend1].push(friend2);
+  friendList[friend2] = friendList[friend2] || [];
+  friendList[friend2].push(friend1);
+  return friendList;
+};
+
+const getFriendList = function(fileLines) {
+  const friendPairs = fileLines.map(devideInPairs);
+  return friendPairs.reduce(addToFriendList, {});
+};
+
+const getPrintableStr = function(connection, person1, person2) {
   if(connection.connFlag) {
-    console.log(`${person1} and ${person2} are connected!`);
-    console.log('Connection Path\n', connection.path.join(' -> '));
+    const message = person1 + ' and ' + person2 + ' are connected!';
+    return message +'\nConnection Path\n' + connection.path.join(' -> ');
   } else {
-    console.log(`${person1} and ${person2} are not connected!`)
+    return person1 + ' and ' + person2 + ' are not connected!';
   }
 };
 
-exports.showConnection = showConnection;
+const getFileLines = function(path) {
+  return fs.readFileSync(path, 'utf8').split('\n');
+};
+
+exports.getFriendList = getFriendList;
+exports.getPrintableStr = getPrintableStr;
+exports.getFileLines = getFileLines;
     
