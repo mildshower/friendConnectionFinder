@@ -1,6 +1,5 @@
-B,D
-C,E
-A,D
-F,D
-F,E
-G,H
+Anuja,Rajat
+Anuja,Priyanshu
+Priyanshu,Trinangkur
+Trinangkur,Barni
+John, Jaani

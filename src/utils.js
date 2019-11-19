@@ -32,7 +32,8 @@ const getFileLines = function(path) {
   return fs.readFileSync(path, 'utf8').split('\n');
 };
 
+exports.addToFriendList = addToFriendList;
 exports.getFriendList = getFriendList;
 exports.getPrintableStr = getPrintableStr;
 exports.getFileLines = getFileLines;
-    
+exports.devideInPairs = devideInPairs;
