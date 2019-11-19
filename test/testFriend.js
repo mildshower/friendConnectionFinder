@@ -16,7 +16,7 @@ describe('generateFriendList()', function() {
   });
 });
 
-describe('isConnected()', function() {
+describe('getConnection()', function() {
   const friendList = { A: ['K', 'H', 'D', 'F', 'J'],
     B: ['D'],
     C: ['E'],
@@ -31,13 +31,13 @@ describe('isConnected()', function() {
 
   it('should give false if no connection is there', function() {
     const expectedConn = false;
-    const actualConn = friends.isConnected([], friendList, 'A', 'G')['connFlag'];
+    const actualConn = friends.getConnection([], friendList, 'A', 'G')['connFlag'];
     assert.strictEqual(actualConn, expectedConn);
   });
 
   it('should give true if connection is there', function() {
     const expectedConn = true;
-    const actualConn = friends.isConnected([], friendList, 'A', 'E')['connFlag'];
+    const actualConn = friends.getConnection([], friendList, 'A', 'E')['connFlag'];
     assert.strictEqual(actualConn, expectedConn);
   });
 });

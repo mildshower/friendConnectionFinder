@@ -9,7 +9,7 @@ const generateFriendList = function() {
     H: ['G']};
 };
 
-const isConnected = function(searchedFriend, friendList, personToLookAt, target) {
+const getConnection = function(searchedFriend, friendList, personToLookAt, target) {
   if(searchedFriend.includes(personToLookAt)) {
     return {updatedSearched: searchedFriend, connFlag: false};
   };
@@ -25,7 +25,7 @@ const isConnected = function(searchedFriend, friendList, personToLookAt, target)
   let updatedPath;
 
   for (let index = 0; index < friendsOfPerson.length && !connection; index ++) {
-    const {updatedSearched, connFlag, path} = isConnected(searchedFriendCopy, friendList, friendsOfPerson[index], target);
+    const {updatedSearched, connFlag, path} = getConnection(searchedFriendCopy, friendList, friendsOfPerson[index], target);
     updatedPath = path;
     connection = connection || connFlag;
     searchedFriendCopy = updatedSearched;
@@ -39,4 +39,4 @@ const isConnected = function(searchedFriend, friendList, personToLookAt, target)
 };
 
 exports.generateFriendList = generateFriendList;
-exports.isConnected = isConnected;
+exports.getConnection = getConnection;
