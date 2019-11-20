@@ -15,7 +15,7 @@ const getConnection = function(searchedFriend, friendList, personToLookAt, targe
   let connection = false;
   let pathBranches = [];
   const unconsideredList = friendsOfPerson.filter(isUnconsidered(searchedFriend));
-  let searchedFriendCopy = searchedFriend.concat(personToLookAt);
+  const searchedFriendCopy = searchedFriend.concat(personToLookAt);
 
   if (friendsOfPerson.includes(target)) {
     connection = true;
@@ -35,4 +35,5 @@ const getConnection = function(searchedFriend, friendList, personToLookAt, targe
 };
 
 exports.isUnconsidered = isUnconsidered;
+exports.addPresentPerson = addPresentPerson;
 exports.getConnection = getConnection;

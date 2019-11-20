@@ -35,10 +35,7 @@ const getPrintableStr = function(connection, person1, person2) {
 };
 
 const getFileLines = function(path) {
-  return fs
-    .readFileSync(path, "utf8")
-    .split("\n")
-    .slice(0, -1);
+  return fs.readFileSync(path, "utf8").split("\n");
 };
 
 exports.addToFriendList = addToFriendList;

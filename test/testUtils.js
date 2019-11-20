@@ -23,10 +23,7 @@ describe("addToFriendList()", function() {
   });
 
   it("should insert entries to non empty friendList", function() {
-    const actualValue = utils.addToFriendList(
-      { Ram: ["Shyam"], Shyam: ["Ram"] },
-      ["Ram", "Sagar"]
-    );
+    const actualValue = utils.addToFriendList({ Ram: ["Shyam"], Shyam: ["Ram"] }, ["Ram", "Sagar"]);
     const expectedValue = {
       Ram: ["Shyam", "Sagar"],
       Shyam: ["Ram"],
@@ -56,11 +53,7 @@ describe("getFriendList()", function() {
 
 describe("getPrintableStr()", function() {
   it("Should give no connection message if connFlag is false", function() {
-    const actualValue = utils.getPrintableStr(
-      { connFlag: false, path: [] },
-      "A",
-      "B"
-    );
+    const actualValue = utils.getPrintableStr({ connFlag: false, path: [] }, "A", "B");
     const expectedValue = "A and B are not connected!";
     assert.deepStrictEqual(actualValue, expectedValue);
   });
@@ -77,8 +70,15 @@ describe("getPrintableStr()", function() {
       "A",
       "B"
     );
-    const expectedValue =
-      "A and B are connected!\nConnection Path\nA --> C --> B\nA --> D --> B\n";
+    const expectedValue = "A and B are connected!\nConnection Path\nA --> C --> B\nA --> D --> B\n";
+    assert.deepStrictEqual(actualValue, expectedValue);
+  });
+});
+
+describe("getFileLines()", function() {
+  it("Should return all lines of testData.txt file in array", function() {
+    const actualValue = utils.getFileLines("./test/testData.txt");
+    const expectedValue = ["A,B", "B,C"];
     assert.deepStrictEqual(actualValue, expectedValue);
   });
 });
