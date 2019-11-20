@@ -19,10 +19,16 @@ const getFriendList = function(fileLines) {
   return friendPairs.reduce(addToFriendList, {});
 };
 
+const addPathToStr = function(pathStr, path) {
+  return pathStr + path.join(" --> ") + "\n";
+};
+
 const getPrintableStr = function(connection, person1, person2) {
   if (connection.connFlag) {
-    const message = person1 + " and " + person2 + " are connected!";
-    return message + "\nConnection Path\n" + connection.path.join(" -> ");
+    let message = person1 + " and " + person2 + " are connected!";
+    message = message + "\nConnection Path\n";
+    const pathStr = connection.path.reduce(addPathToStr, "");
+    return message + pathStr;
   } else {
     return person1 + " and " + person2 + " are not connected!";
   }
