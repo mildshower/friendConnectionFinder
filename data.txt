@@ -4,5 +4,6 @@ Priyanshu,   Trinangkur
 Trinangkur,Barni
 John, Jaani
 Rajat,  Barni
-Rajat, Anuja
 Anuja, Trinangkur
+Anuja, Barni
+Barni, Priyanshu

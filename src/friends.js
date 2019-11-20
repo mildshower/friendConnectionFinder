@@ -10,33 +10,21 @@ const addPresentPerson = function(presentPerson) {
   };
 };
 
-const getConnection = function(
-  searchedFriend,
-  friendList,
-  personToLookAt,
-  target
-) {
+const getConnection = function(searchedFriend, friendList, personToLookAt, target) {
   const friendsOfPerson = friendList[personToLookAt];
-
-  if (friendsOfPerson.includes(target)) {
-    return { connFlag: true, path: [[personToLookAt, target]] };
-  }
-
-  const unconsideredList = friendsOfPerson.filter(
-    isUnconsidered(searchedFriend)
-  );
-  let searchedFriendCopy = searchedFriend.concat(personToLookAt);
   let connection = false;
   let pathBranches = [];
+  const unconsideredList = friendsOfPerson.filter(isUnconsidered(searchedFriend));
+  let searchedFriendCopy = searchedFriend.concat(personToLookAt);
+
+  if (friendsOfPerson.includes(target)) {
+    connection = true;
+    pathBranches = pathBranches.concat([[target]]);
+  }
 
   for (let person of unconsideredList) {
-    const { connFlag, path } = getConnection(
-      searchedFriendCopy,
-      friendList,
-      person,
-      target
-    );
-    if (connFlag) {
+    const { connFlag, path } = getConnection(searchedFriendCopy, friendList, person, target);
+    if (connFlag && person != target) {
       connection = true;
       pathBranches = pathBranches.concat(path);
     }
