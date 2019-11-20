@@ -34,14 +34,14 @@ describe('getConnection()', function() {
   });
 
   it('should give only two given names if they are direct friend(to test terminate condition)', function() {
-    const expectedValue = {connFlag: true, path: ['E', 'F']};
+    const expectedValue = {connFlag: true, path: [['E', 'F']]};
     const {connFlag, path} = friends.getConnection([], friendList, 'E', 'F');
     const actualValue = {connFlag, path};
     assert.deepStrictEqual(actualValue, expectedValue);
   });
 
   it('should give proper path when connection is there', function() {
-    const expectedValue = {connFlag: true, path: ['A','H','F','E']};
+    const expectedValue = {connFlag: true, path: [['A','H','F','E'],['A','F','E'],['A','J','F','E']]};
     const {connFlag, path} = friends.getConnection([], friendList, 'A', 'E');
     const actualValue = {connFlag, path};
     assert.deepStrictEqual(actualValue, expectedValue);

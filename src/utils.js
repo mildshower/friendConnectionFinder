@@ -1,7 +1,7 @@
-const fs = require('fs');
+const fs = require("fs");
 
 const devideInPairs = function(str) {
-  return str.split(',');
+  return str.split(",");
 };
 
 const addToFriendList = function(friendList, friendPair) {
@@ -20,16 +20,19 @@ const getFriendList = function(fileLines) {
 };
 
 const getPrintableStr = function(connection, person1, person2) {
-  if(connection.connFlag) {
-    const message = person1 + ' and ' + person2 + ' are connected!';
-    return message +'\nConnection Path\n' + connection.path.join(' -> ');
+  if (connection.connFlag) {
+    const message = person1 + " and " + person2 + " are connected!";
+    return message + "\nConnection Path\n" + connection.path.join(" -> ");
   } else {
-    return person1 + ' and ' + person2 + ' are not connected!';
+    return person1 + " and " + person2 + " are not connected!";
   }
 };
 
 const getFileLines = function(path) {
-  return fs.readFileSync(path, 'utf8').split('\n').slice(0, -1);
+  return fs
+    .readFileSync(path, "utf8")
+    .split("\n")
+    .slice(0, -1);
 };
 
 exports.addToFriendList = addToFriendList;
