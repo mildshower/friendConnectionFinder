@@ -8,22 +8,20 @@ const getConnection = function(searchedFriend, friendList, personToLookAt, targe
   const friendsOfPerson = friendList[personToLookAt];
 
   if(friendsOfPerson.includes(target)){
-    return {updatedSearched: searchedFriend.concat(personToLookAt), connFlag: true, path: [personToLookAt,target]};
+    return {connFlag: true, path: [personToLookAt,target]};
   }
 
   const unconsideredList = friendsOfPerson.filter(isUnconsidered(searchedFriend));
-  let searchedFriendCopy = searchedFriend.slice();
-  searchedFriendCopy.push(personToLookAt);
+  let searchedFriendCopy = searchedFriend.concat(personToLookAt);
 
   for (let person of unconsideredList) {
-    const {updatedSearched, connFlag, path} = getConnection(searchedFriendCopy, friendList, person, target);
-    searchedFriendCopy = updatedSearched;
+    const {connFlag, path} = getConnection(searchedFriendCopy, friendList, person, target);
     if(connFlag) {
-      return {updatedSearched: searchedFriendCopy, connFlag: true, path: [personToLookAt].concat(path)};
+      return {connFlag: true, path: [personToLookAt].concat(path)};
     }
   }
 
-  return {updatedSearched: searchedFriendCopy, connFlag: false, path: []};
+  return {connFlag: false, path: []};
 };
 
 exports.isUnconsidered = isUnconsidered;
