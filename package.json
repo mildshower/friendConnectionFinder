@@ -1,0 +1,19 @@
+{
+  "name": "connectionfinder",
+  "version": "1.0.0",
+  "description": "This gives connectioin paths between two users",
+  "main": "findConnection.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "nyc mocha",
+    "start": "node findConnection.js"
+  },
+  "devDependencies": {
+    "mocha": "6.2.2",
+    "nyc": "14.1.1"
+  },
+  "author": "Sudipta Kundu",
+  "license": "ISC"
+}
