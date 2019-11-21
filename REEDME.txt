@@ -1,0 +1,2 @@
+Friend pairs are given in a text file,
+It can tell if there is any connection path between any two chosen friends
